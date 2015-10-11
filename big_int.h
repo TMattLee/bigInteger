@@ -23,16 +23,13 @@ public:
     void comp();
     void parseString(std::string str);
 
-
-
 private:
     void bigIntSet(std::string s);
 };
+
 bigInt addBigInt(bigInt, bigInt);
 bigInt subtractBigInt(bigInt, bigInt);
 bigInt multiplyBigInt(bigInt, bigInt);
-bigInt divideBigInt(bigInt, bigInt);
-
+bigInt divideBigInt(bigInt, bigInt, bigInt&);
 
 #endif
-
