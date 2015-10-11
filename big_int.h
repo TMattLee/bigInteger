@@ -10,8 +10,7 @@ public:
     bigInt();
     bigInt(std::string _s);
 
-    int size = 1;
-    int limit = 1;
+    
     std::vector <int> num = {0};
 
     bool isNegative;
