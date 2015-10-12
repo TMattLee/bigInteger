@@ -36,6 +36,9 @@ void bigInt::bigIntSet(std::string s){
 
 void bigInt::incr(){
 	this->num[0]++;
+	if (this->num.size() == 1){									// Necessary to keep within vector bounds
+		this->num.push_back(0);
+	}
 	for (int i = 0; i <= this->num.size() - 2; i++){
 		this->num[i + 1] += this->num[i] / 10;
 		this->num[i] = this->num[i] % 10;
@@ -49,11 +52,9 @@ void bigInt::decr(){
 	}
 	else
 	{
-
 		for (int i = 0; i <= this->num.size()-1; i++){
 			if (this->num[i] - subtractor < 0){
 				this->num[i] = (10 + ~this->num[i]) % 10;
-				//this->num[i + 1] -= subtractor;
 			}
 		}
 		this->num.pop_back();
@@ -61,12 +62,17 @@ void bigInt::decr(){
 }
 
 bigInt addBigInt(bigInt a, bigInt b){
+	if (a.num.size() == 1){									// Necessary to keep within vector bounds
+		a.num.push_back(0);
+	}
 	while (b.num.size() < a.num.size()){					// Make vectors the same size.
 		b.num.push_back(0);
 	}
 	while (b.num.size() > a.num.size()){
 		a.num.push_back(0);
 	}
+	
+	
 	
 	if (!a.isNegative && b.isNegative){						// Perform subtraction is b is negative
 		b.comp();
@@ -237,4 +243,7 @@ void bigInt::comp(){
 	for (int i = 0; i <= this->num.size() - 1; i++){
 		this->num[i] = 10 + ~this->num[i];
 	}
+}
+void bigInt::parseString(std::string str){
+    this->bigIntSet(str);
 }
